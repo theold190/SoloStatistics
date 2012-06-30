@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="css/statistics.css">
+    <title>ErgoSoloStatistics Extension Options</title>
+
+<script type="text/javascript">
+// Set Russian as a default language
+var default_language = 1;
+
+// Saves options to localStorage.
+function save_options() {
+  var inputs = document.getElementsByTagName("input");
+  var language = default_language;
+
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].getAttribute("type") == "radio"
+        && inputs[i].checked == true) {
+      language = inputs[i].value;
+      break;
+    }
+  }
+  var profile = document.getElementById("IDProfile").value;
+
+  localStorage["language"] = language;
+  localStorage["profile"] = profile;
+}
+
+// Restores values from localStorage.
+function restore_options() {
+  var language = localStorage["language"];
+  if (!language) {
+    language = default_language;
+  }
+  var inputs = document.getElementsByTagName("input");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value == language
+        && inputs[i].getAttribute("type") == "radio") {
+      inputs[i].checked = true;
+      break;
+    }
+  }
+
+  var profile = localStorage["profile"];
+  if (!profile) {
+    profile = "";
+  }
+  document.getElementById("IDProfile").value = profile;
+}
+
+function validateNumber(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  if ((key < 48 || key > 57) && !(key == 8 || key == 9 || key == 13 || key == 37 || key == 39 || key == 46) ){
+    theEvent.returnValue = false;
+    if (theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+</script>
+  </head>
+  <body>
+  <body onload="restore_options();">
+  <table class="form"><tr><td>
+    <br>
+    <input id="IDLanguage" type="radio" name="language" value="1" onClick="save_options()">
+    <label for="radio-course_radio-1" value="1">
+      <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
+    </label>
+    <span style="padding-left: 10px"></span>
+
+    <input id="IDLanguage" type="radio" name="language" value="2" onClick="save_options()">
+    <label for="radio-course_radio-2" value="2">
+      <img src="img/flag50x50-4.jpg" alt="English" title="English" class="flag">
+    </label>
+    <span style="padding-left: 10px"></span>
+
+    <input id="IDLanguage" type="radio" name="language" value="3" onClick="save_options()">
+    <label for="radio-course_radio-3" value="3">
+      <img src="img/flag50x50-5.jpg" alt="German" title="German" class="flag">
+    </label>
+    <span style="padding-left: 10px"></span>
+
+    <input id="IDLanguage" type="radio" name="language" value="6" onClick="save_options()">
+    <label for="radio-course_radio-6" value="6">
+      <img src="img/flag50x50-6.jpg" alt="Italian" title="Italian" class="flag">
+    </label>
+    <span style="padding-left: 10px"></span>
+
+    <input id="IDLanguage" type="radio" name="language" value="4" onClick="save_options()">
+    <label for="radio-course_radio-4" value="4">
+      <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
+    </label>
+  </td></tr>
+
+  <tr><td align="center">
+    ID: <input id="IDProfile" type="text" maxlength=20 size=20 onkeypress='validateNumber(event)'>
+  </td></tr>
+
+  <tr><td align="center">
+    <button onclick="save_options()">Save</button>
+  </td></tr>
+  </table>  
+  </body>
+</html>

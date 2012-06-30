@@ -1,0 +1,27 @@
+{
+  "name": "ErgoSolo Stats",
+  "version": "0.4",
+  "description": "An extension to show typing course progress on a http://nabiraem.ru web site.",
+  "options_page": "options.html",
+  "icons": { "16": "img/icon16x16.png",
+             "48": "img/icon128x128.png",
+            "128": "img/icon128x128.png"},
+
+  "browser_action": {
+    "default_title": "ErgoSolo Stats",
+    "default_icon": "img/favicon.ico",
+    "default_popup": "popup.html"
+  },
+
+  "permissions": [
+    "tabs", "http://nabiraem.ru/*"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["http://nabiraem.ru/*"],
+      "js" : ["jquery-1.7.2.min.js", "statistics.js"],
+      "css" : ["css/statistics.css"]
+    }
+    ]
+}

@@ -1,0 +1,18 @@
+@charset 'UTF-8';
+.statistics {
+  min-width:270px;
+  min-height:250px;
+  overflow-x:hidden;
+}
+
+.statistics_empty {
+  min-width:450px;
+  min-height:50px;
+  overflow-x:hidden;
+}
+
+.flag {
+   vertical-align:middle;
+   width:50px;
+   height:50px;
+}

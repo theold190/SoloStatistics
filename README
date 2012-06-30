@@ -1,0 +1,12 @@
+Brief
+    This is a home made Google Chrome extension for tracking progress in 
+    ErgoSolo course (http://nabiraem.ru). The idea of the course is to 
+    teach people to type with 8 fingers and 2 thumbs without peeking to 
+    the keyboard. This extension is keeping you only one click away 
+    from yours or your friends achievements.
+
+    Extension is using scripts and resources from http://nabiraem.ru.
+
+Installation
+    Drag and drop a .CRX file to your Google Chrome to install it. First 
+    time you will be asked to fill in some data.
