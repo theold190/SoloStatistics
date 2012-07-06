@@ -4,13 +4,12 @@
     <script type="text/javascript" src="./statistics.js"></script>
     <link rel="stylesheet" href="css/statistics.css">
 </head>
-<body>
-    <div id="statistics" class="statistics"></div>
+<body id="statistics" class="hidden">
     <script type="text/javascript">
-
     var dataArea = document.getElementById('statistics');
     var language = localStorage["language"];
     var profile = localStorage["profile"];
+
     if(!language || !profile) {
         dataArea.setAttribute("class", "statistics_empty");
         dataArea.innerHTML = "Please use <a href='options.html' target='_blank'>options page</a> to set up your ErgoSolo profile.";        
@@ -18,11 +17,17 @@
       var request = "http://nabiraem.ru/profile/user_info.py?auser_id="+profile
                   +"&locale_id="+language
                   +"&option=stat";
-      sendAjaxRequest( { 'url' : request, 
+      sendAjaxRequest( { 'url' : request,
           'callbackSuccess' : function( data, str )
               {
+                  dataArea.setAttribute("class", "statistics");
                   dataArea.innerHTML = data;
                   dataArea.innerHTML = $('#general-stat-inner').html();
+              },
+          'callbackError' : function( data, str )
+              {
+                  dataArea.setAttribute("class", "statistics_empty");
+                  dataArea.innerHTML = "Can't get info from the server. Please try again later.";
               }
       } );
     }
