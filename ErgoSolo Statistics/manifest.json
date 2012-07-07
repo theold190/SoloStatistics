@@ -22,7 +22,7 @@
     {
       "matches": ["http://nabiraem.ru/*"],
       "js" : ["jquery-1.7.2.min.js", "statistics.js"],
-      "css" : ["css/statistics.css"]
+      "css" : ["css/popup.css","css/options.css"]
     }
     ]
 }
