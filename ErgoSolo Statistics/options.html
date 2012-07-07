@@ -51,15 +51,21 @@ function restore_options() {
 function validateNumber(evt) {
   var theEvent = evt || window.event;
   var key = theEvent.keyCode || theEvent.which;
-  if ((key < 48 || key > 57) && !(key == 8 || key == 9 || key == 13 || key == 37 || key == 39 || key == 46) ){
+  if ((key < 48 || key > 57) && !(key == 8 || key == 9 || key == 13 || key == 37 || key == 39 || key == 46) ) {
     theEvent.returnValue = false;
     if (theEvent.preventDefault) theEvent.preventDefault();
   }
 }
+
+function setFocus()
+{
+  document.getElementById("IDProfile").focus();
+}
+
 </script>
   </head>
   <body>
-  <body onload="restore_options();">
+  <body onload="restore_options();setFocus();">
   <div id="content">
   <table class="form"><tr><td>
     <h1>ErgoSolo Statistics Options</h1>
