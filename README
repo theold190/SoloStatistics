@@ -11,3 +11,5 @@ Brief
 Installation
     Drag and drop a .CRX file to your Google Chrome to install it. First 
     time you will be asked to fill in some data.
+
+    Starting from version 0.5 extension should update automatically.
