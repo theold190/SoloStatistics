@@ -1,0 +1,27 @@
+#content {
+  background-color:#ffffff;
+  border-color:#b5c7de;
+  border-style:solid;
+  border-width:4px;
+  margin:40px auto 20px;
+  padding:12px;
+  width:450px;
+  -webkit-border-radius:12px
+}
+
+body {
+  background-color:#ebeff9;
+  font-family:arial,sans-serif;
+  font-size:13px
+}
+
+h1 {
+  color:#333333;
+  font-size:1.5em;
+  margin:0.7em 0 0;
+  text-align:center
+}
+
+span {
+  padding-left:10px;
+}
