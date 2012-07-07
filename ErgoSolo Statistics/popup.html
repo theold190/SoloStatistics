@@ -20,9 +20,14 @@
           sendAjaxRequest( { 'url' : request,
               'callbackSuccess' : function( data, str )
                   {
-                      dataArea.setAttribute("class", "statistics");
-                      dataArea.innerHTML = data;
-                      dataArea.innerHTML = $('#general-stat-inner').html();
+                      if (data == "") {
+                        dataArea.setAttribute("class", "statistics_empty");
+                        dataArea.innerHTML = "Wrong user ID, please change it on the <a href='options.html' target='_blank'>options page</a>.";
+                      } else {
+                        dataArea.setAttribute("class", "statistics");
+                        dataArea.innerHTML = data;
+                        dataArea.innerHTML = $('#general-stat-inner').html();
+                      }
                   },
               'callbackError' : function( data, str )
                   {
