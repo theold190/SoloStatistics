@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="js/options.js"></script>
     <link rel="stylesheet" href="css/options.css">
     <title>ErgoSoloStatistics Extension Options</title>
-
-    <script type="text/javascript" src="js/options.js"></script>
   </head>
   <body>
   <body onload="restoreOptions();setFocus();">
@@ -35,15 +34,16 @@
     </h3>
     </td></tr>
 
-  <tr><td align="right"><h3>User ID:</h3></td>
-  <td>
-    <input id="IDProfile" type="text" maxlength=10 size=10 onkeydown="toggleSaveButtonStatus(false)" onchange="updateLink()">
-  </td>
-  <td><a href="" id="IDCheck">Check</a></td></tr>
+    <tr><td align="right"><h3>User ID:</h3></td>
+    <td>
+      <input id="IDProfile" type="text" maxlength=10 size=10 onkeydown="toggleSaveButtonStatus(false)" onchange="updateLink()">
+    </td>
+    <td><a href="" id="IDCheck">Check</a></td></tr>
 
-  <tr><td/><td align="right">
-    <button id="IDSaveButton" onclick="saveOptions()">Save</button>
-  </td></tr>
+    <tr><td/><td align="right">
+      <button id="IDSaveButton" onclick="saveOptions()">Save</button>
+    </td></tr>
+
   </table>
   </div>  
   </body>
