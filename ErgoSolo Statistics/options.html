@@ -13,41 +13,27 @@ function toggleSaveButtonStatus(disable) {
   document.getElementById("IDSaveButton").disabled = disable;
 }
 
-function getChecked(type, name, default_value) {
-  var inputs = document.getElementsByTagName("input");
-
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].getAttribute("type") == type
-        && inputs[i].getAttribute("name") == name
-        && inputs[i].checked == true) {
-      return inputs[i].value;
-      break;
-    }
-  }
-  return default_value;
-}
-
-function setChecked(type, name, value) {
-  var inputs = document.getElementsByTagName("input");
-
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value == value
-        && inputs[i].getAttribute("name") == name
-        && inputs[i].getAttribute("type") == type) {
-      inputs[i].checked = true;
-      break;
+function setSelectedItem(id, value) {
+  var list = document.getElementById(id);
+  for (var i=0; i<list.options.length; i++) {
+    if (list.options[i].value == value) {
+      list.options[i].selected = true;
+      return;
     }
   }
 }
 
 // Saves options to localStorage.
 function saveOptions() {
-  var language = getChecked("radio", "language", default_language);
-  var course = getChecked("radio", "course", default_course);
-  var profile = document.getElementById("IDProfile").value;
+  var list = document.getElementById("IDLanguage");
+  var index = list.selectedIndex;
+  localStorage["language"] = list.options[index].value;
 
-  localStorage["course"] = course;
-  localStorage["language"] = language;
+  list = document.getElementById("IDCourse");
+  index = list.selectedIndex;
+  localStorage["course"] = list.options[index].value;
+
+  var profile = document.getElementById("IDProfile").value;
   localStorage["profile"] = profile;
 
   toggleSaveButtonStatus(true);
@@ -59,13 +45,13 @@ function restoreOptions() {
   if (!language) {
     language = default_language;
   }
-  setChecked("radio", "language", language);
+  setSelectedItem("IDLanguage", language);
 
   var course = localStorage["course"];
   if (!course) {
     course = default_course;
   }
-  setChecked("radio", "course", course);
+  setSelectedItem("IDCourse", course);
 
   var profile = localStorage["profile"];
   if (!profile) {
@@ -74,15 +60,6 @@ function restoreOptions() {
   document.getElementById("IDProfile").value = profile;
 
   toggleSaveButtonStatus(true);
-}
-
-function validateNumber(evt) {
-  var theEvent = evt || window.event;
-  var key = theEvent.keyCode || theEvent.which;
-  if ((key < 48 || key > 57) && !(key == 8 || key == 9 || key == 13 || key == 37 || key == 39 || key == 46) ) {
-    theEvent.returnValue = false;
-    if (theEvent.preventDefault) theEvent.preventDefault();
-  }
 }
 
 function setFocus()
@@ -98,78 +75,35 @@ function setFocus()
   <table class="form"><tr><td>
     <h1>ErgoSolo Statistics Options</h1>
     </td></tr>
+
     <tr><td>
-    <h3>Interface language:</h3>
+    <h3>Statistics language:
+    <select onchange="toggleSaveButtonStatus(false)" id="IDLanguage">
+      <option value="1">Russian</option>
+      <option value="2">English</option>
+      <option value="3">German</option>
+      <option value="6">Italian</option>
+      <option value="7">French</option>
+    </select>
+    </h3>
     </td></tr>
-    <tr><td>
-    <input id="IDLanguage" type="radio" name="language" value="1" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-1" value="1">
-      <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDLanguage" type="radio" name="language" value="2" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-2" value="2">
-      <img src="img/flag50x50-4.jpg" alt="English" title="English" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDLanguage" type="radio" name="language" value="3" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-3" value="3">
-      <img src="img/flag50x50-5.jpg" alt="German" title="German" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDLanguage" type="radio" name="language" value="6" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-6" value="6">
-      <img src="img/flag50x50-6.jpg" alt="Italian" title="Italian" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDLanguage" type="radio" name="language" value="4" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-4" value="4">
-      <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
-    </label>
-  </td></tr>
 
     <tr><td>
-    <h3>Course:</h3>
+    <h3>Course:
+    <select onchange="toggleSaveButtonStatus(false)" id="IDCourse">
+      <option value="1">Russian</option>
+      <option value="4">English</option>
+      <option value="5">German</option>
+      <option value="6">Italian</option>
+      <option value="7">French</option>
+    </select>
+    </h3>
     </td></tr>
-    <tr><td>
-    <input id="IDCourse" type="radio" name="course" value="1" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-1" value="1">
-      <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
-    </label>
-    <span/>
 
-    <input id="IDCourse" type="radio" name="course" value="4" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-2" value="4">
-      <img src="img/flag50x50-4.jpg" alt="English" title="English" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDCourse" type="radio" name="course" value="5" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-3" value="5">
-      <img src="img/flag50x50-5.jpg" alt="German" title="German" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDCourse" type="radio" name="course" value="6" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-6" value="6">
-      <img src="img/flag50x50-6.jpg" alt="Italian" title="Italian" class="flag">
-    </label>
-    <span/>
-
-    <input id="IDCourse" type="radio" name="course" value="7" onClick="toggleSaveButtonStatus(false)">
-    <label for="radio-course_radio-4" value="7">
-      <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
-    </label>
-  </td></tr>
-
-  <tr><td><br><!--An empty row--></td></tr>
- 
-  <tr><td align="center">
-    ID: <input id="IDProfile" type="text" maxlength=20 size=20 onkeydown='toggleSaveButtonStatus(false);'>
+  <tr><td>
+  <h3>ID:
+    <input id="IDProfile" type="text" maxlength=20 size=20 onkeydown='toggleSaveButtonStatus(false);'>
+  </h3>
   </td></tr>
 
   <tr><td align="center">
