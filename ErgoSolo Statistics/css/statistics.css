@@ -1,0 +1,35 @@
+.green-block1, .gray-block1, .blue-block1, .red-block1 {
+  display: block;
+  height: 1px;
+  overflow: hidden;
+  font-size:1px;
+  margin: 0 1px;
+}
+
+.green-block-inner, .gray-block-inner, .blue-block-inner, .red-block-inner {
+  padding: 0 2px;
+  margin: 0;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+  text-align: left;
+  color: #ffffff;
+  vertical-align: top;
+  font-family: Arial;
+}
+
+.green-block-inner, .green-block1 {
+  background-color: #5fac20;
+}
+
+.gray-block-inner, .gray-block1 {
+  background-color: #5e5e5e;
+}
+
+.blue-block-inner, .blue-block1 {
+  background-color: #3b91d3;
+}
+
+.red-block-inner, .red-block1 {
+  background-color: #ab0000;
+}
