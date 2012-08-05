@@ -9,6 +9,10 @@
 var default_language = 1;
 var default_course = 1;
 
+function toggleSaveButtonStatus(disable) {
+  document.getElementById("IDSaveButton").disabled = disable;
+}
+
 function getChecked(type, name, default_value) {
   var inputs = document.getElementsByTagName("input");
 
@@ -45,6 +49,8 @@ function saveOptions() {
   localStorage["course"] = course;
   localStorage["language"] = language;
   localStorage["profile"] = profile;
+
+  toggleSaveButtonStatus(true);
 }
 
 // Restores values from localStorage.
@@ -66,6 +72,8 @@ function restoreOptions() {
     profile = "";
   }
   document.getElementById("IDProfile").value = profile;
+
+  toggleSaveButtonStatus(true);
 }
 
 function validateNumber(evt) {
@@ -94,31 +102,31 @@ function setFocus()
     <h3>Interface language:</h3>
     </td></tr>
     <tr><td>
-    <input id="IDLanguage" type="radio" name="language" value="1" onClick="saveOptions()">
+    <input id="IDLanguage" type="radio" name="language" value="1" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-1" value="1">
       <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
     </label>
     <span/>
 
-    <input id="IDLanguage" type="radio" name="language" value="2" onClick="saveOptions()">
+    <input id="IDLanguage" type="radio" name="language" value="2" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-2" value="2">
       <img src="img/flag50x50-4.jpg" alt="English" title="English" class="flag">
     </label>
     <span/>
 
-    <input id="IDLanguage" type="radio" name="language" value="3" onClick="saveOptions()">
+    <input id="IDLanguage" type="radio" name="language" value="3" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-3" value="3">
       <img src="img/flag50x50-5.jpg" alt="German" title="German" class="flag">
     </label>
     <span/>
 
-    <input id="IDLanguage" type="radio" name="language" value="6" onClick="saveOptions()">
+    <input id="IDLanguage" type="radio" name="language" value="6" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-6" value="6">
       <img src="img/flag50x50-6.jpg" alt="Italian" title="Italian" class="flag">
     </label>
     <span/>
 
-    <input id="IDLanguage" type="radio" name="language" value="4" onClick="saveOptions()">
+    <input id="IDLanguage" type="radio" name="language" value="4" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-4" value="4">
       <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
     </label>
@@ -128,31 +136,31 @@ function setFocus()
     <h3>Course:</h3>
     </td></tr>
     <tr><td>
-    <input id="IDCourse" type="radio" name="course" value="1" onClick="saveOptions()">
+    <input id="IDCourse" type="radio" name="course" value="1" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-1" value="1">
       <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
     </label>
     <span/>
 
-    <input id="IDCourse" type="radio" name="course" value="4" onClick="saveOptions()">
+    <input id="IDCourse" type="radio" name="course" value="4" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-2" value="4">
       <img src="img/flag50x50-4.jpg" alt="English" title="English" class="flag">
     </label>
     <span/>
 
-    <input id="IDCourse" type="radio" name="course" value="5" onClick="saveOptions()">
+    <input id="IDCourse" type="radio" name="course" value="5" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-3" value="5">
       <img src="img/flag50x50-5.jpg" alt="German" title="German" class="flag">
     </label>
     <span/>
 
-    <input id="IDCourse" type="radio" name="course" value="6" onClick="saveOptions()">
+    <input id="IDCourse" type="radio" name="course" value="6" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-6" value="6">
       <img src="img/flag50x50-6.jpg" alt="Italian" title="Italian" class="flag">
     </label>
     <span/>
 
-    <input id="IDCourse" type="radio" name="course" value="7" onClick="saveOptions()">
+    <input id="IDCourse" type="radio" name="course" value="7" onClick="toggleSaveButtonStatus(false)">
     <label for="radio-course_radio-4" value="7">
       <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
     </label>
@@ -161,11 +169,11 @@ function setFocus()
   <tr><td><br><!--An empty row--></td></tr>
  
   <tr><td align="center">
-    ID: <input id="IDProfile" type="text" maxlength=20 size=20 onkeypress='validateNumber(event)'>
+    ID: <input id="IDProfile" type="text" maxlength=20 size=20 onkeydown='toggleSaveButtonStatus(false);'>
   </td></tr>
 
   <tr><td align="center">
-    <button onclick="saveOptions()">Save</button>
+    <button id="IDSaveButton" onclick="saveOptions()">Save</button>
   </td></tr>
   </table>
   </div>  
