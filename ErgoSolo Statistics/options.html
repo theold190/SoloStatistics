@@ -67,6 +67,13 @@ function setFocus()
   document.getElementById("IDProfile").focus();
 }
 
+function updateLink() {
+    var a = document.getElementById("IDCheck");
+    var profile = document.getElementById("IDProfile").value;
+    var href = "http://nabiraem.ru/user/"+profile;
+    a.href = href;
+}
+
 </script>
   </head>
   <body>
@@ -100,10 +107,11 @@ function setFocus()
 
   <tr><td align="right"><h3>User ID:</h3></td>
   <td>
-    <input id="IDProfile" type="text" maxlength=20 size=20 onkeydown='toggleSaveButtonStatus(false);'>
-  </td></tr>
+    <input id="IDProfile" type="text" maxlength=10 size=10 onkeydown="toggleSaveButtonStatus(false)" onchange="updateLink()">
+  </td>
+  <td><a href="" id="IDCheck">Check</a></td></tr>
 
-  <tr><td></td><td align="right">
+  <tr><td/><td align="right">
     <button id="IDSaveButton" onclick="saveOptions()">Save</button>
   </td></tr>
   </table>
