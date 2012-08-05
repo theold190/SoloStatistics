@@ -72,12 +72,11 @@ function setFocus()
   <body>
   <body onload="restoreOptions();setFocus();">
   <div id="content">
-  <table class="form"><tr><td>
-    <h1>ErgoSolo Statistics Options</h1>
-    </td></tr>
+  <table class="form">
+    <tr><h1>ErgoSolo Statistics Options</h1></tr>
 
-    <tr><td>
-    <h3>Statistics language:
+    <tr><td align="right"><h3>Statistics language:</h3></td>
+    <td>
     <select onchange="toggleSaveButtonStatus(false)" id="IDLanguage">
       <option value="1">Russian</option>
       <option value="2">English</option>
@@ -85,11 +84,10 @@ function setFocus()
       <option value="6">Italian</option>
       <option value="7">French</option>
     </select>
-    </h3>
     </td></tr>
 
-    <tr><td>
-    <h3>Course:
+    <tr><td align="right"><h3>Course:</h3></td>
+    <td>
     <select onchange="toggleSaveButtonStatus(false)" id="IDCourse">
       <option value="1">Russian</option>
       <option value="4">English</option>
@@ -100,13 +98,12 @@ function setFocus()
     </h3>
     </td></tr>
 
-  <tr><td>
-  <h3>ID:
+  <tr><td align="right"><h3>User ID:</h3></td>
+  <td>
     <input id="IDProfile" type="text" maxlength=20 size=20 onkeydown='toggleSaveButtonStatus(false);'>
-  </h3>
   </td></tr>
 
-  <tr><td align="center">
+  <tr><td></td><td align="right">
     <button id="IDSaveButton" onclick="saveOptions()">Save</button>
   </td></tr>
   </table>
