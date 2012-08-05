@@ -9,30 +9,37 @@
 var default_language = 1;
 var default_course = 1;
 
+function getChecked(type, name, default_value) {
+  var inputs = document.getElementsByTagName("input");
+
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].getAttribute("type") == type
+        && inputs[i].getAttribute("name") == name
+        && inputs[i].checked == true) {
+      return inputs[i].value;
+      break;
+    }
+  }
+  return default_value;
+}
+
+function setChecked(type, name, value) {
+  var inputs = document.getElementsByTagName("input");
+
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value == value
+        && inputs[i].getAttribute("name") == name
+        && inputs[i].getAttribute("type") == type) {
+      inputs[i].checked = true;
+      break;
+    }
+  }
+}
+
 // Saves options to localStorage.
 function saveOptions() {
-  var inputs = document.getElementsByTagName("input");
-  var language = default_language;
-
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].getAttribute("type") == "radio"
-        && inputs[i].getAttribute("name") == "language"
-        && inputs[i].checked == true) {
-      language = inputs[i].value;
-      break;
-    }
-  }
-
-  var course = default_course;
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].getAttribute("type") == "radio"
-        && inputs[i].getAttribute("name") == "course"
-        && inputs[i].checked == true) {
-      course = inputs[i].value;
-      break;
-    }
-  }
-
+  var language = getChecked("radio", "language", default_language);
+  var course = getChecked("radio", "course", default_course);
   var profile = document.getElementById("IDProfile").value;
 
   localStorage["course"] = course;
@@ -46,29 +53,13 @@ function restoreOptions() {
   if (!language) {
     language = default_language;
   }
-  var inputs = document.getElementsByTagName("input");
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value == language
-        && inputs[i].getAttribute("name") == "language"
-        && inputs[i].getAttribute("type") == "radio") {
-      inputs[i].checked = true;
-      break;
-    }
-  }
+  setChecked("radio", "language", language);
 
   var course = localStorage["course"];
   if (!course) {
     course = default_course;
   }
-  var inputs = document.getElementsByTagName("input");
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].value == course
-        && inputs[i].getAttribute("name") == "course"
-        && inputs[i].getAttribute("type") == "radio") {
-      inputs[i].checked = true;
-      break;
-    }
-  }
+  setChecked("radio", "course", course);
 
   var profile = localStorage["profile"];
   if (!profile) {
