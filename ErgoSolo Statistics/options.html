@@ -5,8 +5,9 @@
     <title>ErgoSoloStatistics Extension Options</title>
 
 <script type="text/javascript">
-// Set Russian as a default language
+// Set Russian as a default language and a course
 var default_language = 1;
+var default_course = 1;
 
 // Saves options to localStorage.
 function saveOptions() {
@@ -15,13 +16,26 @@ function saveOptions() {
 
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].getAttribute("type") == "radio"
+        && inputs[i].getAttribute("name") == "language"
         && inputs[i].checked == true) {
       language = inputs[i].value;
       break;
     }
   }
+
+  var course = default_course;
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].getAttribute("type") == "radio"
+        && inputs[i].getAttribute("name") == "course"
+        && inputs[i].checked == true) {
+      course = inputs[i].value;
+      break;
+    }
+  }
+
   var profile = document.getElementById("IDProfile").value;
 
+  localStorage["course"] = course;
   localStorage["language"] = language;
   localStorage["profile"] = profile;
 }
@@ -35,6 +49,21 @@ function restoreOptions() {
   var inputs = document.getElementsByTagName("input");
   for (var i = 0; i < inputs.length; i++) {
     if (inputs[i].value == language
+        && inputs[i].getAttribute("name") == "language"
+        && inputs[i].getAttribute("type") == "radio") {
+      inputs[i].checked = true;
+      break;
+    }
+  }
+
+  var course = localStorage["course"];
+  if (!course) {
+    course = default_course;
+  }
+  var inputs = document.getElementsByTagName("input");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].value == course
+        && inputs[i].getAttribute("name") == "course"
         && inputs[i].getAttribute("type") == "radio") {
       inputs[i].checked = true;
       break;
@@ -71,7 +100,9 @@ function setFocus()
     <h1>ErgoSolo Statistics Options</h1>
     </td></tr>
     <tr><td>
-    <br>
+    <h3>Interface language:</h3>
+    </td></tr>
+    <tr><td>
     <input id="IDLanguage" type="radio" name="language" value="1" onClick="saveOptions()">
     <label for="radio-course_radio-1" value="1">
       <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
@@ -98,6 +129,40 @@ function setFocus()
 
     <input id="IDLanguage" type="radio" name="language" value="4" onClick="saveOptions()">
     <label for="radio-course_radio-4" value="4">
+      <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
+    </label>
+  </td></tr>
+
+    <tr><td>
+    <h3>Course:</h3>
+    </td></tr>
+    <tr><td>
+    <input id="IDCourse" type="radio" name="course" value="1" onClick="saveOptions()">
+    <label for="radio-course_radio-1" value="1">
+      <img src="img/flag50x50-1.jpg" alt="Russian" title="Russian" class="flag">
+    </label>
+    <span/>
+
+    <input id="IDCourse" type="radio" name="course" value="4" onClick="saveOptions()">
+    <label for="radio-course_radio-2" value="4">
+      <img src="img/flag50x50-4.jpg" alt="English" title="English" class="flag">
+    </label>
+    <span/>
+
+    <input id="IDCourse" type="radio" name="course" value="5" onClick="saveOptions()">
+    <label for="radio-course_radio-3" value="5">
+      <img src="img/flag50x50-5.jpg" alt="German" title="German" class="flag">
+    </label>
+    <span/>
+
+    <input id="IDCourse" type="radio" name="course" value="6" onClick="saveOptions()">
+    <label for="radio-course_radio-6" value="6">
+      <img src="img/flag50x50-6.jpg" alt="Italian" title="Italian" class="flag">
+    </label>
+    <span/>
+
+    <input id="IDCourse" type="radio" name="course" value="7" onClick="saveOptions()">
+    <label for="radio-course_radio-4" value="7">
       <img src="img/flag50x50-7.jpg" alt="French" title="French" class="flag">
     </label>
   </td></tr>

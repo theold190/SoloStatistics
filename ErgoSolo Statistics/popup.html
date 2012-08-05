@@ -9,14 +9,16 @@
         var dataArea = document.getElementById('statistics');
         var language = localStorage["language"];
         var profile = localStorage["profile"];
+        var course = localStorage["course"];
 
-        if(!language || !profile) {
+        if(!language || !profile || !course) {
             dataArea.setAttribute("class", "statistics_empty");
             dataArea.innerHTML = "Please use <a href='options.html' target='_blank'>options page</a> to set up your ErgoSolo profile.";        
         } else {
           var request = "http://nabiraem.ru/profile/user_info.py?auser_id="+profile
                       +"&locale_id="+language
-                      +"&option=stat";
+                      +"&option=stat"
+                      +"&course="+course;
           sendAjaxRequest( { 'url' : request,
               'callbackSuccess' : function( data, str )
                   {
@@ -26,7 +28,14 @@
                       } else {
                         dataArea.setAttribute("class", "statistics");
                         dataArea.innerHTML = data;
-                        dataArea.innerHTML = $('#general-stat-inner').html();
+                        var newData = $('#general-stat-inner').html();
+                        // In case we haven't started course we will not get statistics
+                        if (newData == undefined) {
+                            dataArea.setAttribute("class", "statistics_empty");
+                            dataArea.innerHTML = "Selected course was not started, please update your <a href='options.html' target='_blank'>settings</a>.";
+                        } else {
+                            dataArea.innerHTML = newData;
+                        }
                       }
                   },
               'callbackError' : function( data, str )
