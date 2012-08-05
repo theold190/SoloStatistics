@@ -1,57 +1,11 @@
 <html>
 <head>
-    <script type="text/javascript" src="./jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="./statistics.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
     <link rel="stylesheet" href="css/popup.css">
     <link rel="stylesheet" href="css/statistics.css">
 
     <script type="text/javascript">
-    function IsNumeric(input)
-    {
-        return (input - 0) == input && input.length > 0;
-    }
-
-    function onLoad() {
-        var dataArea = document.getElementById('statistics');
-        var language = localStorage["language"];
-        var profile = localStorage["profile"];
-        var course = localStorage["course"];
-
-        if(!language || !profile || !IsNumeric(profile) || !course) {
-            dataArea.setAttribute("class", "statistics_empty");
-            dataArea.innerHTML = "Please use <a href='options.html' target='_blank'>options page</a> to set up your ErgoSolo profile.";
-        } else {
-          var request = "http://nabiraem.ru/profile/user_info.py?auser_id="+profile
-                      +"&locale_id="+language
-                      +"&option=stat"
-                      +"&course="+course;
-          sendAjaxRequest( { 'url' : request,
-              'callbackSuccess' : function( data, str )
-                  {
-                      if (data == "") {
-                        dataArea.setAttribute("class", "statistics_empty");
-                        dataArea.innerHTML = "Wrong user ID, please change it on the <a href='options.html' target='_blank'>options page</a>.";
-                      } else {
-                        dataArea.setAttribute("class", "statistics");
-                        dataArea.innerHTML = data;
-                        var newData = $('#general-stat-inner').html();
-                        // In case we haven't started course we will not get statistics
-                        if (newData == undefined) {
-                            dataArea.setAttribute("class", "statistics_empty");
-                            dataArea.innerHTML = "Selected course was not started, please update your <a href='options.html' target='_blank'>settings</a>.";
-                        } else {
-                            dataArea.innerHTML = newData;
-                        }
-                      }
-                  },
-              'callbackError' : function( data, str )
-                  {
-                      dataArea.setAttribute("class", "statistics_empty");
-                      dataArea.innerHTML = "Can't get info from the server. Please try again later.";
-                  }
-          } );
-        }
-    }
     </script>
 </head>
 

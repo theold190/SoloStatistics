@@ -21,8 +21,8 @@
   "content_scripts": [
     {
       "matches": ["http://nabiraem.ru/*"],
-      "js" : ["jquery-1.7.2.min.js", "statistics.js"],
-      "css" : ["css/popup.css","css/options.css", "css/statistics.css"]
+      "js" : ["js/jquery-1.7.2.min.js", "js/popup.js", "js/options.js"],
+      "css" : ["css/popup.css","css/options.css"]
     }
     ]
 }
